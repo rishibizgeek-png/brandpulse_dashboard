@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BrandPulse — Social Listening</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root{
+    --bg:#101d23;
+    --card:#182b34;
+    --muted:#223c49;
+    --accent:#0da6f2;
+    --ai-bg:#223c49;
+  }
+  body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); }
+</style>
+</head>
+<body class="antialiased">
+
+<div class="relative min-h-screen flex">
+  <!-- Sidebar -->
+  <aside class="fixed top-0 left-0 h-full w-72 bg-[var(--bg)] p-6 flex flex-col justify-between shadow-lg">
+    <div class="flex flex-col gap-6">
+      <h1 class="text-white text-2xl font-bold">BrandPulse</h1>
+      <nav class="flex flex-col gap-2">
+        <a href="home.html" class="flex items-center gap-3 px-4 py-3 rounded-full text-white/70 hover:bg-[var(--muted)] hover:text-white">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+          <span class="text-sm font-medium">Home</span>
+        </a>
+        <a href="analytics.html" class="flex items-center gap-3 px-4 py-3 rounded-full text-white/70 hover:bg-[var(--muted)] hover:text-white">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h4v8H3zM10 3h4v18h-4zM17 8h4v13h-4z"/></svg>
+          <span class="text-sm font-medium">Analytics</span>
+        </a>
+        <a href="social-listening.html" class="flex items-center gap-3 px-4 py-3 rounded-full bg-[var(--accent)] text-white">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1a9 9 0 0 0-9 9h2a7 7 0 1 1 7 7V1z"/></svg>
+          <span class="text-sm font-medium">Social Listening</span>
+        </a>
+        <a href="publishing.html" class="flex items-center gap-3 px-4 py-3 rounded-full text-white/70 hover:bg-[var(--muted)] hover:text-white">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 4h-3V2H8v2H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6c0-1.1-.9-2-2-2zM12 11H7V9h5v2zm5 4H7v-2h10v2z"/></svg>
+          <span class="text-sm font-medium">Publishing</span>
+        </a>
+      </nav>
+    </div>
+    <div class="flex flex-col gap-2">
+      <a href="settings.html" class="flex items-center gap-3 px-4 py-3 rounded-full text-white/70 hover:bg-[var(--muted)] hover:text-white">
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm10 3h-2.03a7.9 7.9 0 0 0-.45-1.08l1.44-1.44-1.41-1.41-1.44 1.44c-.34-.2-.7-.36-1.08-.45V2h-2v2.03c-.38.09-.74.25-1.08.45L13.72 3.04 12.31 4.45l1.44 1.44c-.2.34-.36.7-.45 1.08H10V8h2.03c.09.38.25.74.45 1.08L11.04 10.72 12.45 12.13l1.44-1.44c.34.2.7.36 1.08.45V16h2v-2.03c.38-.09.74-.25 1.08-.45l1.44 1.44 1.41-1.41-1.44-1.44c.2-.34.36-.7.45-1.08H22z"/></svg>
+        <span class="text-sm font-medium">Settings</span>
+      </a>
+      <a href="profile.html" class="flex items-center gap-3 px-4 py-3 rounded-full text-white/70 hover:bg-[var(--muted)] hover:text-white">
+        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM2 20a10 10 0 0 1 20 0z"/></svg>
+        <span class="text-sm font-medium">Profile</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="ml-72 flex-1 p-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+      <div>
+        <h1 class="text-white text-3xl font-bold">Social Listening</h1>
+        <p class="text-white/70 mt-1">Track direct + indirect mentions, sentiment, and conversations</p>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="flex flex-wrap gap-3 mb-8">
+      <select class="rounded-full bg-[var(--muted)] px-4 py-2 text-white text-sm">
+        <option>All Sentiments</option><option>Positive</option><option>Neutral</option><option>Negative</option>
+      </select>
+      <select class="rounded-full bg-[var(--muted)] px-4 py-2 text-white text-sm">
+        <option>All Platforms</option><option>Twitter</option><option>Facebook</option><option>LinkedIn</option><option>Reddit</option>
+      </select>
+      <select class="rounded-full bg-[var(--muted)] px-4 py-2 text-white text-sm">
+        <option>Date Range</option><option>Last 7 Days</option><option>Last 30 Days</option><option>Custom Range</option>
+      </select>
+      <select class="rounded-full bg-[var(--muted)] px-4 py-2 text-white text-sm">
+        <option>All Message Types</option><option>Post</option><option>Comment</option><option>Message</option>
+      </select>
+    </div>
+
+    <!-- Keyword Tracker -->
+    <section class="bg-[var(--card)] p-6 rounded-2xl shadow-lg mb-8">
+      <h2 class="text-white text-xl font-bold mb-4">Track Keywords & Hashtags</h2>
+      <div class="flex items-center gap-3 mb-4">
+        <input type="text" placeholder="Enter keyword or #hashtag" class="flex-1 rounded-lg bg-[var(--muted)] text-white px-4 py-2 focus:outline-none"/>
+        <button class="rounded-full bg-[var(--accent)] px-5 py-2.5 text-white font-medium hover:bg-opacity-90">+ Add</button>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <span class="bg-[var(--muted)] text-white px-3 py-1 rounded-full text-sm">BrandPulse ✕</span>
+        <span class="bg-[var(--muted)] text-white px-3 py-1 rounded-full text-sm">#AIListening ✕</span>
+        <span class="bg-[var(--muted)] text-white px-3 py-1 rounded-full text-sm">CompetitorX ✕</span>
+      </div>
+    </section>
+
+    <!-- KPI Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 mb-8">
+      <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg"><p class="text-sm text-white/70">Direct Mentions</p><h3 class="text-2xl font-bold text-white mt-2">1,234</h3></div>
+      <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg"><p class="text-sm text-white/70">Indirect Mentions</p><h3 class="text-2xl font-bold text-white mt-2">892</h3></div>
+      <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg"><p class="text-sm text-white/70">Positive</p><h3 class="text-2xl font-bold text-green-400 mt-2">68%</h3></div>
+      <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg"><p class="text-sm text-white/70">Neutral</p><h3 class="text-2xl font-bold text-yellow-400 mt-2">20%</h3></div>
+      <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg"><p class="text-sm text-white/70">Negative</p><h3 class="text-2xl font-bold text-red-400 mt-2">12%</h3></div>
+      <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg"><p class="text-sm text-white/70">Top Source</p><h3 class="text-2xl font-bold text-white mt-2">Twitter</h3></div>
+    </div>
+
+    <!-- Charts + Word Cloud -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+      <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg">
+        <h2 class="text-white text-xl font-bold mb-4">Sentiment Split</h2>
+        <canvas id="sentimentChart" class="h-64"></canvas>
+      </div>
+      <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg">
+        <h2 class="text-white text-xl font-bold mb-4">Mentions by Platform</h2>
+        <canvas id="platformChart" class="h-64"></canvas>
+      </div>
+      <div class="bg-[var(--card)] p-6 rounded-2xl shadow-lg">
+        <h2 class="text-white text-xl font-bold mb-4">Word Cloud</h2>
+        <div class="h-64 flex items-center justify-center text-white/50">Placeholder Word Cloud</div>
+      </div>
+    </div>
+
+    <!-- Mentions Tables -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+      <section class="bg-[var(--card)] p-6 rounded-2xl shadow-lg">
+        <h2 class="text-white text-xl font-bold mb-4">Direct Mentions</h2>
+        <table class="w-full text-left">
+          <thead><tr class="border-b border-white/10">
+            <th class="py-3 px-4 text-sm text-white/80">Message</th>
+            <th class="py-3 px-4 text-sm text-white/80">Platform</th>
+            <th class="py-3 px-4 text-sm text-white/80">Type</th>
+            <th class="py-3 px-4 text-sm text-white/80">Sentiment</th>
+            <th class="py-3 px-4 text-sm text-white/80">Date</th>
+          </tr></thead>
+          <tbody>
+            <tr class="border-b border-white/10">
+              <td class="py-3 px-4 text-white/90">Hey @BrandPulse your tool rocks!</td>
+              <td class="py-3 px-4 text-white/90">Twitter</td>
+              <td class="py-3 px-4 text-white/90">Post</td>
+              <td class="py-3 px-4"><span class="bg-green-500/20 text-green-400 px-2 py-1 rounded-full text-xs">Positive</span></td>
+              <td class="py-3 px-4 text-white/90">2023-09-15</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section class="bg-[var(--card)] p-6 rounded-2xl shadow-lg">
+        <h2 class="text-white text-xl font-bold mb-4">Indirect Mentions</h2>
+        <table class="w-full text-left">
+          <thead><tr class="border-b border-white/10">
+            <th class="py-3 px-4 text-sm text-white/80">Message</th>
+            <th class="py-3 px-4 text-sm text-white/80">Platform</th>
+            <th class="py-3 px-4 text-sm text-white/80">Type</th>
+            <th class="py-3 px-4 text-sm text-white/80">Sentiment</th>
+            <th class="py-3 px-4 text-sm text-white/80">Date</th>
+          </tr></thead>
+          <tbody>
+            <tr class="border-b border-white/10">
+              <td class="py-3 px-4 text-white/90">That new listening platform looks good, maybe BrandPulse?</td>
+              <td class="py-3 px-4 text-white/90">Reddit</td>
+              <td class="py-3 px-4 text-white/90">Comment</td>
+              <td class="py-3 px-4"><span class="bg-yellow-500/20 text-yellow-400 px-2 py-1 rounded-full text-xs">Neutral</span></td>
+              <td class="py-3 px-4 text-white/90">2023-09-14</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- AI Insights -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-[var(--ai-bg)] p-6 rounded-2xl shadow-lg border border-[var(--accent)]/50">
+        <h3 class="text-white text-lg font-bold mb-2">AI Summary - Positive</h3>
+        <p class="text-white/80 text-sm">Users highlight product speed and great UX.</p>
+      </div>
+      <div class="bg-[var(--ai-bg)] p-6 rounded-2xl shadow-lg border border-[var(--accent)]/50">
+        <h3 class="text-white text-lg font-bold mb-2">AI Summary - Negative</h3>
+        <p class="text-white/80 text-sm">Concerns raised around onboarding and slow support replies.</p>
+      </div>
+      <div class="bg-[var(--ai-bg)] p-6 rounded-2xl shadow-lg border border-[var(--accent)]/50">
+        <h3 class="text-white text-lg font-bold mb-2">AI Recommendation</h3>
+        <p class="text-white/80 text-sm">Focus messaging on ease-of-use, while staffing up support team for faster responses.</p>
+      </div>
+    </div>
+
+    <!-- Export -->
+    <div class="flex gap-4">
+      <button class="rounded-full bg-[var(--accent)] px-5 py-2.5 text-white text-sm font-bold">Export → PDF</button>
+      <button class="rounded-full bg-[var(--muted)] px-5 py-2.5 text-white text-sm font-bold hover:bg-[var(--accent)]">Export → Excel</button>
+    </div>
+  </main>
+</div>
+
+<!-- Charts Script -->
+<script>
+  // Sentiment Pie Chart
+  new Chart(document.getElementById('sentimentChart'), {
+    type: 'pie',
+    data: {
+      labels: ['Positive','Neutral','Negative'],
+      datasets: [{ data:[68,20,12], backgroundColor:['#22c55e','#eab308','#ef4444']}]
+    },
+    options:{plugins:{legend:{labels:{color:'#fff'}}}}
+  });
+
+  // Platform Bar Chart
+  new Chart(document.getElementById('platformChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Twitter','Facebook','LinkedIn','Reddit'],
+      datasets: [{ data:[450,300,200,176], backgroundColor:'#0da6f2', borderRadius:8 }]
+    },
+    options:{scales:{x:{ticks:{color:'#fff'}},y:{ticks:{color:'#fff'}}},plugins:{legend:{display:false}}}
+  });
+</script>
+</body>
+</html>

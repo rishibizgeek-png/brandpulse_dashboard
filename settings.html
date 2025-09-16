@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>BrandPulse — Settings</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+  :root{
+    --bg:#101d23;
+    --card:#182b34;
+    --muted:#223c49;
+    --accent:#0da6f2;
+  }
+  body { font-family: Inter, sans-serif; background:var(--bg); color:white; }
+</style>
+</head>
+<body class="antialiased">
+
+<div class="relative min-h-screen flex">
+  <!-- Sidebar -->
+  <aside class="fixed top-0 left-0 h-full w-72 bg-[#101d23] p-6 flex flex-col justify-between shadow-lg">
+    <div class="flex flex-col gap-6">
+      <h1 class="text-white text-2xl font-bold">BrandPulse</h1>
+      <nav class="flex flex-col gap-2">
+        <!-- Home -->
+        <a class="flex items-center gap-3 px-4 py-3 rounded-full text-white/70 hover:bg-[var(--muted)] hover:text-white" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+          <span class="text-sm font-medium">Home</span>
+        </a>
+        <!-- Analytics -->
+        <a class="flex items-center gap-3 px-4 py-3 rounded-full text-white/70 hover:bg-[var(--muted)] hover:text-white" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3 13h4v8H3zM10 3h4v18h-4zM17 8h4v13h-4z"/></svg>
+          <span class="text-sm font-medium">Analytics</span>
+        </a>
+        <!-- Social Listening -->
+        <a class="flex items-center gap-3 px-4 py-3 rounded-full text-white/70 hover:bg-[var(--muted)] hover:text-white" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 1a9 9 0 0 0-9 9h2a7 7 0 1 1 7 7V1z"/></svg>
+          <span class="text-sm font-medium">Social Listening</span>
+        </a>
+        <!-- Publishing -->
+        <a class="flex items-center gap-3 px-4 py-3 rounded-full text-white/70 hover:bg-[var(--muted)] hover:text-white" href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 4h-3V2H8v2H5c-1.1 0-2 .9-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6c0-1.1-.9-2-2-2zM12 11H7V9h5v2zm5 4H7v-2h10v2z"/></svg>
+          <span class="text-sm font-medium">Publishing</span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Bottom section (Settings + Profile pinned) -->
+    <div class="flex flex-col gap-2">
+      <!-- Settings -->
+      <a class="flex items-center gap-3 px-4 py-3 rounded-full bg-[var(--accent)] text-white" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm10 3h-2.03a7.9 7.9 0 0 0-.45-1.08l1.44-1.44-1.41-1.41-1.44 1.44c-.34-.2-.7-.36-1.08-.45V2h-2v2.03c-.38.09-.74.25-1.08.45L13.72 3.04 12.31 4.45l1.44 1.44c-.2.34-.36.7-.45 1.08H10V8h2.03c.09.38.25.74.45 1.08L11.04 10.72 12.45 12.13l1.44-1.44c.34.2.7.36 1.08.45V16h2v-2.03c.38-.09.74-.25 1.08-.45l1.44 1.44 1.41-1.41-1.44-1.44c.2-.34.36-.7.45-1.08H22z"/></svg>
+        <span class="text-sm font-medium">Settings</span>
+      </a>
+      <!-- Profile -->
+      <a class="flex items-center gap-3 px-4 py-3 rounded-full text-white/70 hover:bg-[var(--muted)] hover:text-white" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM2 20a10 10 0 0 1 20 0z"/></svg>
+        <span class="text-sm font-medium">Profile</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="ml-72 flex-1 p-8">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold">Settings</h1>
+      <p class="text-white/70 mt-2">Manage your account, integrations, and preferences</p>
+    </header>
+
+    <!-- Account Management -->
+    <section class="bg-[var(--card)] p-6 rounded-2xl shadow-lg mb-8">
+      <h2 class="text-xl font-semibold mb-4">Account Management</h2>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-sm text-white/70 mb-1">Email</label>
+          <input type="email" value="user@example.com" class="w-full rounded-lg bg-[var(--muted)] border-none text-white px-4 py-2"/>
+        </div>
+        <div>
+          <label class="block text-sm text-white/70 mb-1">Password</label>
+          <button class="rounded-full bg-[var(--accent)] px-4 py-2 text-sm font-semibold">Reset Password</button>
+        </div>
+        <div>
+          <p class="text-sm text-white/70 mb-2">Connected Login Methods</p>
+          <div class="flex gap-3">
+            <button class="px-4 py-2 rounded-full bg-red-500/20 text-sm">Google Connected</button>
+            <button class="px-4 py-2 rounded-full bg-blue-500/20 text-sm">Microsoft Connected</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Connected Social Accounts -->
+    <section class="bg-[var(--card)] p-6 rounded-2xl shadow-lg mb-8">
+      <h2 class="text-xl font-semibold mb-4">Connected Social Accounts</h2>
+      <ul class="space-y-3">
+        <li class="flex items-center justify-between bg-[var(--muted)] p-3 rounded-lg">
+          <span>Twitter</span>
+          <button class="text-sm bg-red-500 px-3 py-1 rounded-full">Disconnect</button>
+        </li>
+        <li class="flex items-center justify-between bg-[var(--muted)] p-3 rounded-lg">
+          <span>Facebook</span>
+          <button class="text-sm bg-green-500 px-3 py-1 rounded-full">Connect</button>
+        </li>
+        <li class="flex items-center justify-between bg-[var(--muted)] p-3 rounded-lg">
+          <span>Instagram</span>
+          <button class="text-sm bg-green-500 px-3 py-1 rounded-full">Connect</button>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Preferences -->
+    <section class="bg-[var(--card)] p-6 rounded-2xl shadow-lg mb-8">
+      <h2 class="text-xl font-semibold mb-4">Preferences</h2>
+      <div class="flex items-center justify-between">
+        <span>Email Notifications</span>
+        <label class="inline-flex items-center cursor-pointer">
+          <input type="checkbox" class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:bg-[var(--accent)] relative">
+            <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition peer-checked:translate-x-5"></div>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- Danger Zone -->
+    <section class="bg-[var(--card)] p-6 rounded-2xl shadow-lg border border-red-500/40">
+      <h2 class="text-xl font-semibold text-red-400 mb-4">Danger Zone</h2>
+      <p class="text-white/70 mb-4">Delete your account and all associated data. This action cannot be undone.</p>
+      <button class="rounded-full bg-red-600 px-5 py-2 text-sm font-bold hover:bg-red-700">Delete Account</button>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>
