@@ -1,94 +1,70 @@
 // src/Dashboard.js
 import React from "react";
-import { Link, Routes, Route, Navigate } from "react-router-dom";
-import { auth } from "./firebase";
-import { signOut } from "firebase/auth";
+import { Routes, Route, Link } from "react-router-dom";
 
-// import the Home page
+// Import all pages
 import Home from "./pages/Home";
+import Analytics from "./pages/Analytics";
+import SocialListening from "./pages/SocialListening";
+import Settings from "./pages/Settings";
+import Profile from "./pages/Profile";
 
 function Dashboard({ user }) {
-  const handleLogout = async () => {
-    await signOut(auth);
-    window.location.href = "/";
-  };
-
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div className="flex min-h-screen bg-[#101d23] text-white">
       {/* Sidebar */}
-      <div
-        style={{
-          width: "220px",
-          background: "#111827",
-          color: "white",
-          padding: "20px",
-        }}
-      >
-        <h2 style={{ marginBottom: "20px" }}>BrandPulse</h2>
-        <nav style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-          <Link
-            to="home"
-            style={{ color: "white", textDecoration: "none" }}
-          >
-            Home
-          </Link>
-          <Link
-            to="analytics"
-            style={{ color: "white", textDecoration: "none" }}
-          >
-            Analytics
-          </Link>
-          <Link
-            to="social"
-            style={{ color: "white", textDecoration: "none" }}
-          >
-            Social Listening
-          </Link>
+      <aside className="w-72 bg-[#101d23] p-6 flex flex-col justify-between shadow-lg">
+        <div className="flex flex-col gap-6">
+          <h1 className="text-2xl font-bold">BrandPulse</h1>
+          <nav className="flex flex-col gap-2">
+            <Link
+              to="home"
+              className="flex items-center gap-3 px-4 py-3 rounded-full bg-[#0da6f2] text-white"
+            >
+              Home
+            </Link>
+            <Link
+              to="analytics"
+              className="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#223c49]"
+            >
+              Analytics
+            </Link>
+            <Link
+              to="social-listening"
+              className="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#223c49]"
+            >
+              Social Listening
+            </Link>
+          </nav>
+        </div>
+
+        {/* Bottom pinned links */}
+        <div className="flex flex-col gap-2">
           <Link
             to="settings"
-            style={{ color: "white", textDecoration: "none" }}
+            className="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#223c49]"
           >
             Settings
           </Link>
           <Link
             to="profile"
-            style={{ color: "white", textDecoration: "none" }}
+            className="flex items-center gap-3 px-4 py-3 rounded-full hover:bg-[#223c49]"
           >
             Profile
           </Link>
-        </nav>
-        <button
-          onClick={handleLogout}
-          style={{
-            marginTop: "30px",
-            background: "red",
-            color: "white",
-            border: "none",
-            padding: "10px",
-            cursor: "pointer",
-          }}
-        >
-          Logout
-        </button>
-      </div>
+        </div>
+      </aside>
 
-      {/* Main Content */}
-      <div style={{ flex: 1, padding: "20px" }}>
-        <h3>Welcome, {user.email}</h3>
+      {/* Main content */}
+      <main className="flex-1">
         <Routes>
-          {/* Home page now loads from src/pages/Home.js */}
           <Route path="home" element={<Home />} />
-
-          {/* Other pages placeholders */}
-          <Route path="analytics" element={<h2>📊 Analytics (Coming Soon)</h2>} />
-          <Route path="social" element={<h2>🌐 Social Listening (Coming Soon)</h2>} />
-          <Route path="settings" element={<h2>⚙️ Settings (Coming Soon)</h2>} />
-          <Route path="profile" element={<h2>👤 Profile (Coming Soon)</h2>} />
-
-          {/* Default → Home */}
-          <Route path="*" element={<Navigate to="home" replace />} />
+          <Route path="analytics" element={<Analytics />} />
+          <Route path="social-listening" element={<SocialListening />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="profile" element={<Profile />} />
         </Routes>
-      </div>
+      </main>
     </div>
   );
 }
